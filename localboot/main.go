@@ -114,7 +114,7 @@ func BootGrubMode(devices []storage.BlockDev, baseMountpoint string, guid string
 	// search for a valid grub config and extracts the boot configuration
 	bootconfigs := make([]bootconfig.BootConfig, 0)
 	for _, mountpoint := range mounted {
-		bootconfigs = append(bootconfigs, ScanGrubConfigs(mountpoint.Path)...)
+		bootconfigs = append(bootconfigs, ScanGrubConfigs(devices, mountpoint.Path)...)
 	}
 	log.Printf("Found %d boot configs", len(bootconfigs))
 	for _, cfg := range bootconfigs {
